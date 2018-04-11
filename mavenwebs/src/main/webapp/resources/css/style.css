@@ -1,0 +1,224 @@
+@charset "UTF-8";
+
+/* -------------------------------tag style reset---------------- */
+
+html{
+	height: 100%;
+}
+
+body{
+	margin: 0px;
+	height: 100%;
+}
+
+h1,h2,h3,h4,h5,h6{
+	margin: 0px;
+}
+
+ul{
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+a{
+	text-decoration: none;
+	color: #0080ff;
+}
+
+a:hover{
+	color: #0080ff;
+}
+
+
+li{
+	
+}
+
+/* .text {
+           position: relative;     
+         }
+         
+         .text-concat {
+           position: relative;
+           display: inline-block;
+           word-wrap: break-word;
+           overflow: hidden;
+           max-height: 2.4em; (Number of lines you want visible) * (line-height)
+           line-height: 1.2em;
+           text-align:justify;
+         }
+         
+         .text.ellipsis::after {
+           content: "...";
+           position: absolute;
+           right: -12px; 
+           bottom: 4px;
+         } */
+
+/* ------------------------------my style cascade----------------------- */
+.hidden{
+	display: none;
+}
+
+/* ----------------.header---------------------------------------------------------------- */
+.header{
+		height: 45px;
+		top:0px;
+		width: 100%;
+		position: fixed;
+		background: #ffffff;
+		border-bottom: 1px solid #666666;
+}
+	.header > h1{
+		font-size: 14px;
+		height: inherit;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		
+	}
+
+	/* ------------------.main-menu----------------------------------------------- */
+	
+	.main-menu{
+		position: relative;
+		top: -45px;
+	}
+		.main-menu ul{
+			display: flex;
+			justify-content: space-between;
+		}
+		
+			.main-menu li,
+			.main-menu li a{
+				width: 45px;
+				height: 45px;
+				display: flex;
+				justify-content: center;
+			}
+			
+				.main-menu li a img{
+					width: 24px;
+					height: 24px;
+					align-self: center;
+					
+				}
+				
+/* ----------------.main---------------------------------------------------------------- */	
+.main{
+	margin-top: 46px;
+}	
+		.main .note-list{
+			font-size: 14px;
+			line-height: 19px;
+			color: #595959;	
+		}
+			.main .note-list ul{
+				
+			}
+			
+				.main .note-list li{
+					padding: 15px;
+					border-bottom:1px solid #ddd;
+				}
+				
+				
+			
+					.main .note-list li>div:first-child{
+						font-size: 17px;
+						line-height: 21px;
+						color: #000px;	
+					}
+					
+					.main .note-list li>div:nth-child(2){
+						display: -webkit-box;
+						-webkit-box-orient: vertical;
+						-webkit-line-clamp: 2;
+						overflow: hidden;
+						
+						line-height: 1.2em;
+						max-height: 2.4em;
+					}
+					
+					.main .note-list li > div:not(:first-child){
+						margin-top: 5px;
+					}
+					
+					.main .note-list li>div:last-child{
+						font-size: 13px;
+						display: flex;
+						justify-content: space-between;
+					}
+					
+						.main .note-list li > div > span:first-child{
+							color: #6bacca;	
+						}
+						
+.btn-list{
+	border: 1px solid red;
+	position: fixed;
+	right: 20px;
+	bottom: 20px;
+}
+	.btn-list > ul{
+		border: 1px solid black;	
+		display: flex;
+		flex-direction: column;
+	}
+		.btn-list > ul > li{
+			background: aqua;
+			width: 50px;
+			height: 50px;
+			
+			position: absolute;
+			right:0px;
+			bottom:0px;
+			
+			border-radius: 26px;
+			text-align: center;
+			
+			transition:0.5s;
+		}
+		
+		.btn-list > ul > li:first-child {
+			order: 2;
+			background: #0080ff;
+			z-index: 100;
+		}		
+		
+		#edit-button.show{
+			bottom: 120px;
+		}
+	
+		
+		#del-button.show{
+			bottom:60px;
+		}
+		
+.aside{
+	width: 80%;
+	height: calc(100% - 46px);
+	background: #ffffff66;
+	position: fixed;
+	top: 46px;
+	left: -80%;
+	transition:4s;
+	/* transition-property: left; */
+	
+}
+
+.aside.show{
+	left:0%;
+	box-shadow: 20px 19px 41px #829fad;
+
+}
+	
+		
+	/* 	.btn-list > ul > li:first-child:hover~li{
+			bottom: 50px;
+		} */
+		
+			
+					
+		

@@ -26,7 +26,6 @@ public class NoteController
 	
 	
 	@RequestMapping("list")
-	@ResponseBody
 	public String noteList(@RequestParam(value="p", defaultValue="1") 
 				Integer page, Model model) 
 	{
@@ -34,15 +33,14 @@ public class NoteController
 		List<Note> notes = service.getNoteList(page);
 		
 		//model을 이용하여 notes에 값을 저장
-		//model.addAttribute("notes", notes);
+		model.addAttribute("notes", notes);
 		
-		return notes.get(0).getTitle();
+		return "note.list";
 	}
 	
 	
 	//id라는 매개변수를 이용하여 url값을 저장
 	@RequestMapping("{id}")
-	@ResponseBody
 	public String noteDetail(@PathVariable("id") Integer id, Model model) 
 	{
 		
