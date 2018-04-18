@@ -61,6 +61,23 @@ public class MavenwebsLoginSuccessHandler implements AuthenticationSuccessHandle
 			{
 				//직접 로그인시
 				String defaultRole = service.getDefaultRoleByMemberId(memberId);
+				
+				switch(defaultRole)
+				{
+				
+				case "ROLE_AUTHOR":
+					redirectStrategy.sendRedirect(request, response, "/author/index");
+					break;
+					
+				case "ROLE_ADMIN":
+					redirectStrategy.sendRedirect(request, response, "/admin/index");
+					break;
+					
+				default:
+					redirectStrategy.sendRedirect(request, response, "/error");
+					break;
+						
+				}
 			}
 		}
 		

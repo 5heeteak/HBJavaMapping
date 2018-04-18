@@ -205,8 +205,44 @@ body {
 	box-shadow: #979797 3px 3px 3px;
 }
 
-.animate{
+.trans{
 	trasition: 4000ms;
 }
 
+
+@keyframes silde-up{
+	from{
+		margin-top: 100px;
+	}	
+	
+	to {
+		margin-top:0px;
+	}
+}
+
+.animate{
+	animation-name: silde-up;
+	animation-duration: 2s;
+	
+}
+
+@keyframes size-up{
+	from{
+		width: 100px;
+	}	
+	
+	50%{
+		left: -200px;
+	}
+	
+	to {
+		width:300px;
+	}
+}
+
+.animate1{
+	animation-name: size-up;
+	animation-duration: 5s;
+	
+}
 

@@ -49,7 +49,7 @@ initial-scale=1,minimum-scale=1, user-scalable=1">
 	<section id="ex4" class="example">
 		<h1>효과주기 예제</h1>
 		<div class="text-align-center">
-			<img class="animate" src="img/mybatis.png" />
+			<img class="" src="img/mybatis.png" />
 			<img class="animate" src="img/tomcat.png" />
 		</div>
 		<div>

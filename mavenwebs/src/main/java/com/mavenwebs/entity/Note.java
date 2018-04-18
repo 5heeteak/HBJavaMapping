@@ -12,10 +12,10 @@ public class Note
 	private int id;
 	private String title;
 	private String content;
-	//private String writerId;
+	private String writerId;
 	private Date regDate;
 	private int hit;
-	//private int order;
+	private boolean pub;
 	//private long chapterId;
 	
 
@@ -64,14 +64,14 @@ public class Note
 	}
 
 
-	/*public String getWriterId() {
+	public String getWriterId() {
 		return writerId;
 	}
 
 
 	public void setWriterId(String writerId) {
 		this.writerId = writerId;
-	}*/
+	}
 
 
 	public Date getRegDate() {
@@ -94,11 +94,22 @@ public class Note
 	}
 
 
+	public boolean isPub() {
+		return pub;
+	}
+
+
+	public void setPub(boolean pub) {
+		this.pub = pub;
+	}
+
+
 	@Override
 	public String toString() {
-		return "Note [id=" + id + ", title=" + title + ", content=" + content + ", regDate=" + regDate + ", hit=" + hit
-				+ "]";
+		return "Note [id=" + id + ", title=" + title + ", content=" + content + ", writerId=" + writerId + ", regDate="
+				+ regDate + ", hit=" + hit + ", pub=" + pub + "]";
 	}
-	
+
+
 	
 }

@@ -134,13 +134,15 @@ $(function()
 	});
 	
 	cssBtn.click(function(){
-		img1
+		/*img1
 		.css({
 			width:"300px"
 		})
 		.css({
 			height:"200px"
-		});
+		});*/
+		img1
+		.addClass("animate1");
 	});
 });
 
