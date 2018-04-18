@@ -14,7 +14,7 @@
 			</a>
 			</li>
 			<%-- <li><a href=""><img src="${ctx}/resources/img/ic_search_black_24dp_1x.png"></a></li> --%>
-			<li><a href="${ctx}/author/note/list">관리</a></li>
+			
 			<!-- <li><a href=""><img src=""></a></li> -->
 		</ul>
 	</nav>

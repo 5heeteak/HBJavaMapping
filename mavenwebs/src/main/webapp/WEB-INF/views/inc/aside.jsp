@@ -10,10 +10,16 @@
 				<a href="${ctx}/member/login" >로그인</a>
 			</li>
 			<li>
-				<a href="${ctx}/logout" >로그아웃</a>
+				<a href="${ctx}/member/logout" >로그아웃</a>
 			</li>
 			<li>
 				<a href="${ctx}/member/join" >회원가입</a>
+			</li>
+			<li>
+				<a href="${ctx}/author/index">관리</a>
+			</li>
+			<li>
+				<a href="${ctx}/admin/index">관리자페이지</a>
 			</li>
 		</ul>
 	</nav>

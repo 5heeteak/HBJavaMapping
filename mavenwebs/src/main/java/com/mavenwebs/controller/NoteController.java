@@ -1,5 +1,6 @@
 package com.mavenwebs.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,12 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mavenwebs.entity.Note;
+import com.mavenwebs.entity.NoteLike;
 import com.mavenwebs.service.NoteService;
 
 @Controller
@@ -40,15 +43,29 @@ public class NoteController
 	
 	
 	//id라는 매개변수를 이용하여 url값을 저장
-	@RequestMapping("{id}")
+	@GetMapping("{id}")
 	public String noteDetail(@PathVariable("id") Integer id, Model model) 
 	{
 		
 		Note note = service.getNote(id);
 		
-		//model.addAttribute("note", note);
+		model.addAttribute("note", note);
 		
-		return note.getContent();
+		return "note.detail";
 	}
-
+	
+	
+	@GetMapping("{id}/like")
+	public String like(@PathVariable("id") Integer noteId, Model model, Principal principal) 
+	{
+		
+		String memberId = "snonopy";//principal.getName();
+		
+		service.setNoteLike(noteId, memberId);
+		
+		
+		return "redirect:../{id}";
+	}
+	
+	
 }

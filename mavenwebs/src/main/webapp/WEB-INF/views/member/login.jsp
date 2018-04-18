@@ -15,7 +15,7 @@
 					</tr>
 					<tr>
 						<th>비밀번호 : </th>
-						<td><input type="text" name="password" placeholder="비밀번호를 입력해"   /></td>
+						<td><input type="password" name="password" placeholder="비밀번호를 입력해"   /></td>
 					</tr>
 					<tr>
 						<td colspan="2">

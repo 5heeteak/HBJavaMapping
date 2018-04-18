@@ -24,7 +24,7 @@
 					<tr>
 					<tr>
 						<th>사진  </th>
-						<td><input type="file"  /></td>
+						<td><input type="file" name="file" /></td>
 					</tr>
 						<td colspan="2">
 							<input type="submit" value="가입" />

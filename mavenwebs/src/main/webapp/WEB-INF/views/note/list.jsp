@@ -9,7 +9,7 @@
 			<ul>
 			<c:forEach var="note" items="${notes}">
 				<li>
-					<div><a href="${ctx }/note/${note.id}">${note.title}</a></div>
+					<div><a href="${note.id}">${note.title}</a></div>
 					<div>${note.content }</div>
 					<div><span>0</span><span> ${note.regDate }</span></div>
 				</li>

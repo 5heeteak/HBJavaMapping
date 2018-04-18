@@ -1,61 +1,52 @@
 package com.mavenwebs.dao.hb;
 
-import java.util.List;
-
 import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.mavenwebs.dao.NoteDao;
+import com.mavenwebs.dao.NoteLikeDao;
 import com.mavenwebs.entity.Note;
-
+import com.mavenwebs.entity.NoteLike;
 
 @Repository
-public class HbNoteDao implements NoteDao 
+public class HbNoteLikeDao implements NoteLikeDao 
 {
+
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	@Transactional
 	@Override
-	public List<Note> getList(Integer page) 
+	@Transactional
+	public NoteLike get(Integer noteId, String memberId) 
 	{
 		Session session = sessionFactory.getCurrentSession();
 		
-		Query<Note> query  = session.createQuery("from Note");
-		List<Note> list = query.getResultList();
+		NoteLike noteLike  = session.get(NoteLike.class, new NoteLike(noteId, memberId));
 		
-		return list;
+		return noteLike;
 	}
 
 	@Override
 	@Transactional
-	public Note get(Integer id) 
+	public int insert(NoteLike noteLike) 
 	{
 		Session session = sessionFactory.getCurrentSession();
 		
-		Note note  = session.get(Note.class, id);
+		session.save(noteLike);
 		
-		return note;
+		return 1;
 	}
 
-	@Transactional
 	@Override
-	public int insert(Note note) 
-	{
-		
-		return 0;
-	}
-
 	@Transactional
-	@Override
-	public int update(Note note) 
+	public int delete(NoteLike noteLike) 
 	{
+		Session session = sessionFactory.getCurrentSession();
 		
+		session.delete(noteLike);;
 		return 0;
 	}
 
