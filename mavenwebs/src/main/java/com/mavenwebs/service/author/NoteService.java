@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.mavenwebs.dao.NoteDao;
 import com.mavenwebs.entity.Note;
+import com.mavenwebs.entity.NoteView;
 
 
 @Service("authorNoteService")
@@ -30,10 +31,10 @@ public class NoteService
 		
 	}
 
-	public List<Note> getNoteList(Integer page) 
+	public List<NoteView> getNoteList(Integer page) 
 	{
 		
-		List<Note> list = noteDao.getList(page);
+		List<NoteView> list = noteDao.getList(page);
 		
 		/*for(Note n : list)
 		{
@@ -68,9 +69,9 @@ public class NoteService
 		return 0;
 	}
 
-	public Note getNote(Integer id) 
+	public NoteView getNote(Integer id) 
 	{
-		Note note = noteDao.get(id);
+		NoteView note = noteDao.get(id);
 		return note;
 	}
 

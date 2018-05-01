@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mavenwebs.dao.NoteDao;
 import com.mavenwebs.entity.Note;
+import com.mavenwebs.entity.NoteView;
 
 
 @Repository
@@ -22,23 +23,23 @@ public class HbNoteDao implements NoteDao
 	
 	@Transactional
 	@Override
-	public List<Note> getList(Integer page) 
+	public List<NoteView> getList(Integer page) 
 	{
 		Session session = sessionFactory.getCurrentSession();
 		
-		Query<Note> query  = session.createQuery("from Note");
-		List<Note> list = query.getResultList();
+		Query<NoteView> query  = session.createQuery("from NoteView", NoteView.class);
+		List<NoteView> list = query.getResultList();
 		
 		return list;
 	}
 
 	@Override
 	@Transactional
-	public Note get(Integer id) 
+	public NoteView get(Integer id) 
 	{
 		Session session = sessionFactory.getCurrentSession();
 		
-		Note note  = session.get(Note.class, id);
+		NoteView note  = session.get(NoteView.class, id);
 		
 		return note;
 	}
@@ -57,6 +58,44 @@ public class HbNoteDao implements NoteDao
 	{
 		
 		return 0;
+	}
+
+	@Override
+	@Transactional
+	public NoteView getPrev(Integer id) 
+	{
+		Session session = sessionFactory.getCurrentSession();
+		
+		Query<NoteView> query = session
+														.createQuery("from NoteView "
+														+ "where regDate < (select regDate from NoteView where id=:id)" 
+														+ "order by regDate desc "
+														,NoteView.class)
+														.setParameter("id", id)
+														.setMaxResults(1);
+		
+		NoteView note = query.getSingleResult();
+					
+		return note;
+	}
+
+	@Override
+	@Transactional
+	public NoteView getNext(Integer id) 
+	{
+		Session session = sessionFactory.getCurrentSession();
+		
+		Query<NoteView> query = session
+														.createQuery("from NoteView "
+														+ "where regDate > (select regDate from NoteView where id=:id)" 
+														+ "order by regDate "
+														,NoteView.class)
+														.setParameter("id", id)
+														.setMaxResults(1);
+		
+		NoteView note  = query.getSingleResult();
+		
+		return note;
 	}
 
 }

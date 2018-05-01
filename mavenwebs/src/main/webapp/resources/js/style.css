@@ -221,8 +221,8 @@ body {
 }
 
 .animate{
-	animation-name: silde-up;
-	animation-duration: 2s;
+	/* animation-name: silde-up;
+	animation-duration: 2s; */
 	
 }
 
@@ -231,18 +231,52 @@ body {
 		width: 100px;
 	}	
 	
-	50%{
-		left: -200px;
+	/* 50%{
+		right:-200px;
 	}
-	
+	 */
 	to {
 		width:300px;
 	}
 }
 
 .animate1{
-	animation-name: size-up;
+	/* animation-name: size-up;
 	animation-duration: 5s;
+	animation-direction:normal;
+	animation-fill-mode: fowards;  */
+	animation: size-up 4s alternate ease;
 	
 }
+
+.viewer{
+	border: 1px solid #e9e9e9;
+	height: 250px;
+	background: #595959;
+}
+	.viewer img{
+		width: 100%;
+		height: 100%;
+	}
+
+.photo-box{
+	border: 1px solid #e9e9e9;
+	overflow: hidden;
+	width:200px;
+	
+}
+	.photo-box ul{
+		display: flex;
+		position: relative;
+		left: -200px;
+		transition: 1s;
+	}
+	
+	.photo-box img{
+		width: 200px;
+		height: 100px;
+	}
+
+
+
 

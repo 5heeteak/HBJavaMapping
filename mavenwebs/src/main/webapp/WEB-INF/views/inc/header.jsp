@@ -4,7 +4,7 @@
   <c:set var="ctx" value="${pageContext.request.contextPath }" />
   
 <header class="header">
-	<h1>NOTE NOTE</h1>
+	<h1><a href="${ctx}/index"><img src="${ctx}/resources/img/logo-ldpi.png" /></a></h1>
 	<nav class="main-menu">
 		<h1 class="hidden">메인메뉴</h1>
 		<ul>

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mavenwebs.entity.Note;
 import com.mavenwebs.entity.NoteLike;
+import com.mavenwebs.entity.NoteView;
 import com.mavenwebs.service.NoteService;
 
 @Controller
@@ -33,7 +34,7 @@ public class NoteController
 				Integer page, Model model) 
 	{
 																			// Model 객체를 생성 Model은 공유객체
-		List<Note> notes = service.getNoteList(page);
+		List<NoteView> notes = service.getNoteList(page);
 		
 		//model을 이용하여 notes에 값을 저장
 		model.addAttribute("notes", notes);
@@ -47,9 +48,11 @@ public class NoteController
 	public String noteDetail(@PathVariable("id") Integer id, Model model) 
 	{
 		
-		Note note = service.getNote(id);
+		NoteView note = service.getNote(id);
+		//NoteView prev = service.getPrevNote(id);
 		
 		model.addAttribute("note", note);
+		//model.addAttribute("prev", prev);
 		
 		return "note.detail";
 	}

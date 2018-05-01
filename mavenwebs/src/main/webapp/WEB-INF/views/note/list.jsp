@@ -11,7 +11,11 @@
 				<li>
 					<div><a href="${note.id}">${note.title}</a></div>
 					<div>${note.content }</div>
-					<div><span>0</span><span> ${note.regDate }</span></div>
+					<div>
+						<span>0</span>
+						<span>comment : ${note.commentCount}</span>
+						<span> ${note.regDate }</span>
+					</div>
 				</li>
 			</c:forEach> 
 			</ul>

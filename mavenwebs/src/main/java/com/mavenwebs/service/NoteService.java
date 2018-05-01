@@ -9,6 +9,7 @@ import com.mavenwebs.dao.NoteDao;
 import com.mavenwebs.dao.NoteLikeDao;
 import com.mavenwebs.entity.Note;
 import com.mavenwebs.entity.NoteLike;
+import com.mavenwebs.entity.NoteView;
 
 
 @Service
@@ -20,16 +21,21 @@ public class NoteService
 	@Autowired
 	private NoteLikeDao noteLikeDao;
 
-	public List<Note> getNoteList(Integer page) 
+	public List<NoteView> getNoteList(Integer page) 
 	{
 		//noteDao = new MyBatisNoteDao();
-		List<Note> list = noteDao.getList(page);
+		List<NoteView> list = noteDao.getList(page);
 		return list;
 	}
 
-	public Note getNote(Integer id)
+	public NoteView getNote(Integer id)
 	{
-		Note note = noteDao.get(id);
+		NoteView note = noteDao.get(id);
+		NoteView prev = noteDao.getPrev(id);
+		NoteView next = noteDao.getNext(id);
+		note.setPrev(prev);
+		note.setNext(next);
+		
 		return note ;
 	}
 

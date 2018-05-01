@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import com.mavenwebs.entity.Note;
+import com.mavenwebs.entity.NoteView;
 
 
 public interface NoteDao 
@@ -13,12 +14,16 @@ public interface NoteDao
 /*	@Select("select * from Note order by regDate desc" + 
 			" 		limit ${(page-1)*15},15")
 	*/
-	List<Note> getList(Integer page);
+	List<NoteView> getList(Integer page);
 
-	Note get(Integer id);
+	NoteView get(Integer id);
 
 	int insert(Note note);
 
 	int update(Note note);
+
+	NoteView getPrev(Integer id);
+
+	NoteView getNext(Integer id);
 
 }
