@@ -74,7 +74,11 @@ public class HbNoteDao implements NoteDao
 														.setParameter("id", id)
 														.setMaxResults(1);
 		
-		NoteView note = query.getSingleResult();
+		NoteView note = null;
+		List<NoteView> list = query.list();
+		
+		if(list.size() > 0)
+			note = list.get(0);
 					
 		return note;
 	}
@@ -93,7 +97,11 @@ public class HbNoteDao implements NoteDao
 														.setParameter("id", id)
 														.setMaxResults(1);
 		
-		NoteView note  = query.getSingleResult();
+		NoteView note = null;
+		List<NoteView> list = query.list();
+		
+		if(list.size() > 0)
+			note = list.get(0);
 		
 		return note;
 	}

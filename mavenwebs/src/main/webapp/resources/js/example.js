@@ -8,6 +8,8 @@ $(function(){
 	var photoList = $("#ex7 .photo-box > ul");
 	//PhotoList.css("left","0px");
 	
+	var width = photoList.width(); 
+	
 	/*var img = photoList.find("img").first();
 	img.click(function(){
 		alert("imgimg");
@@ -17,16 +19,31 @@ $(function(){
 		alert("ListList");
 	});*/
 	
-	leftBtn.click(function(){
+	leftBtn.click(function()
+	{
 		photoList.css("left","-=200px");
+		width -= 200;
+		
+		
 	});
 	
 	rightBtn.click(function()
 	{
-				
 		photoList.css("left","+=200px");
+		width += 200;
+		
 	});
 	
+	
+		photoList.on("transitionend",function()
+		{
+			if(width <= 400 || width >= 800)
+				{
+					alert("EyaHO");
+				}
+			//if
+			//alert("last");
+		});
 	/*photoList.find("img").click(function(){
 		이미지 클릭 시 이벤트 발생 
 		이미지에 직접 이벤트 작성
@@ -46,8 +63,8 @@ $(function(){
 	
 	//이벤트 바인딩 개선 -> bubbling
 	photoList.click(function(){
-		alert(event.currentTarget.tagName);
-		alert(event.target.tagName);
+		//alert(event.currentTarget.tagName);
+		//alert(event.target.tagName);
 	});
 	
 	/*photoList.click(function(e){

@@ -10,11 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mavenwebs.entity.Note;
+import com.mavenwebs.entity.NoteComment;
 import com.mavenwebs.entity.NoteLike;
 import com.mavenwebs.entity.NoteView;
 import com.mavenwebs.service.NoteService;
@@ -65,10 +67,19 @@ public class NoteController
 		String memberId = "snonopy";//principal.getName();
 		
 		service.setNoteLike(noteId, memberId);
-		
-		
+ 		
 		return "redirect:../{id}";
 	}
 	
+	@PostMapping("{id}/comment/reg")
+	@ResponseBody
+	public String commentReg(NoteComment comment,@PathVariable("id") Integer noteId)
+	{
+		comment.setNoteId(noteId);
+		
+		int result = service.addNoteComment(comment);
+				
+		return String.valueOf(result);
+	}
 	
 }

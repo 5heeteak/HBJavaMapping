@@ -3,7 +3,7 @@
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />  
-	<main class="main note detail">
+	<main class="main note-detail">
 		<article class="note-list">
 			<header>
 				<h1>${note.title}</h1>
@@ -29,6 +29,31 @@
 			<div>
 				<a href="${note.id}/like" class="btn btn-like">좋아요!!!!</a>
 			</div>
+		</section>
+		
+		<section>
+			<h1 class="hidden"> 댓글 입력 폼 </h1>
+			<h2> 댓글이나 쓰고 가라 </h2>
+			<form action="${note.id}/comment/reg" method="post">
+				<section>
+					<div>
+						<label class="hidden" >작성자</label>
+						<input type="text" placeholder="작성자" name="nic-name"/>
+						<label class="hidden" >비밀번호</label>
+						<input type="password" placeholder="비밀번호" name="pwd"/>
+					</div>
+					<div>
+						<label class="hidden" >댓글</label>
+						<textarea rows="1" cols="50" name="content"></textarea>
+					</div>
+					<div>
+						<input type="checkbox" id="secret-option"/>
+						<label> 비밀 댓글 </label>
+						<input type="submit" value="취소"/>
+						<input type="submit" value="등록"/>
+					</div>
+				</section>
+			</form>
 		</section>
 		
 		<section>

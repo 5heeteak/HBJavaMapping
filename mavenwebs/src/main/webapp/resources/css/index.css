@@ -89,18 +89,19 @@ ul{
 		/* justify-content: space-around; */
 	}
 		.category ul li{
+			position:relative;
 			display:inline-block;
 			width:60px;
 			height:60px;
 			border: 1px solid #595959;
 			border-radius: 50%;
-			background:#17c6d9;
+			/* background:#17c6d9; */
 			text-align: center;
 			margin-left: 5px;
 		}
 		
 		.category ul li:first-child{
-			background:#4b9c7c;
+			/* background:#4b9c7c; */
 		}
 	
 			.category ul li a{
@@ -109,7 +110,23 @@ ul{
 				font-size: 12px;
 			}
 			
-	
+
+.category-views{
+	position: relative;
+	overflow: hidden;
+}
+	.category-views > section{
+		border:1px solid aqua;
+		position: absolute;
+		top: 0px;
+		width:100%;
+		background: #fff;
+	}
+		.category-views .show{
+			visibility
+			right: 300px;
+			width: 100%;
+		}
 	
 	
 	

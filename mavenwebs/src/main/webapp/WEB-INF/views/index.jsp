@@ -79,47 +79,183 @@
 		});
 		
 		$(function(){
-			var categoryViews = $(".category-views section");
+			var categoryViews = $(".category-views");
 			var categoryBtn = $(".category > ul");
+			var ajaxIcon = null;
+			var views = categoryViews.children();
+			var view = views.eq(0);
 			
+			//view의 초기화 작업
+			views.css({
+				zIndex: "1",
+				visibility: "hidden"
+			});
+						
+			view.css({
+				zIndex: "3",
+				visibility: "visible"
+			});
+			
+			categoryViews.css({
+				height : view.height()
+			});	
+			
+			var oldView = view;
+			
+			
+			//클릭 했을 시의 상태
 			categoryBtn.click(function(e)
 			{
 				if(e.target === e.currentTarget)
 					return;
 				
+				
 				var target = e.target;
 				
 				if(target.nodeName == "A")
-					target=target.parentNode;				
+				{
+					target=target.parentNode;
+					e.preventDefault();
+				}
+				
+				if(ajaxIcon != null)
+				{
+					alert("처리중이다");
+					return;
+				}
+				var targets = $(e.target);
 				
 				var viewName = target.dataset.viewName;
 				
 				//view 객체 얻기
 				var view = $("."+viewName);
 				
-				view.css("border","1px solid red");
+				//1.css로 초기 상태 만들기
+				views.css({
+					zIndex: "1",
+					visibility: "hidden"
+				});
+				
+				oldView.css({
+					zIndex: "2",
+					visibility: "visible"
+				});
+				
+				view.css({
+					left : "100%",
+					zIndex: "3",
+					visibility: "visible"
+				});
+				
+			
+				/* if(viewName.hasClass("show"))
+					viewName.removeClass("show");
+				else	
+					viewName.addClass("show"); */
 				
 				
-				//view를 보여주기
-				//1. 모든 view에 hidden 추가
-				categoryViews.addClass("hidden");
+				categoryViews.animate({
+					height : view.height()
+				},400, function(){
+					view.animate({
+						left: "0px"
+					},500);
+				});	
 				
-				//2. 필요한 view만 hidden 제거
-				view.removeClass("hidden");
+			
+					
+				//categoryViews의 section의 display 변화
+					
+				/* categoryViews.children().css({
+					display : "none"
+				})
+				
+				view.css({
+					display: "block"
+				}) */
+				
+				//alert(viewName);
+				//view.css("border","1px solid red");
+				
+				//alert(view.length);
 				/* 
 				if(	view.hasClass("hidden"))
 					view.removeClass("hidden");
 				else
 					view.addClass("hidden"); */
-				
 				//view가 null이라면
 				// ajax로 가져오기
-				/* if(view == null)
+				
+				
+				/*  if(view.length == 0)
 				{
+					ajaxIcon =  $("<img />")
+											 	.attr("src","resources/img/load.gif")
+											 	.css({
+											 		position:"absolute",
+											 		left:"17px",
+											 		top:"17px"
+											 	})
+					 							.appendTo(target);
+					 
+					// targets.css("background", "#fff url('/mavenwebs/resources/img/load.gif') no-repeat center");
+					$.get(viewName+"-partial",function(data)
+						 {
+							
+							 
+							 //alert(data);
+							 var html = categoryViews.html();
+							 //alert(html);
+							 categoryViews.html(html+data);
+							 
+							 var view  = categoryViews.find("."+viewName);
+							 //alert(a.length);
+							 
+							 ajaxIcon.remove();
+							 ajaxIcon = null;
+						 });
+				}  */
 					
-				} */
+					/* if(viewName == "book-list")
+					{
+						$.get("book-list-partial",function(data)
+						 {
+							 ajaxIcon.remove();
+							 ajaxIcon = null;
+							 
+							 //alert(data);
+							 var html = categoryViews.html();
+							 //alert(html);
+							 categoryViews.html(html+data);
+						 });
+					}
+					
+					else if(viewName == "published-book-list")
+					{
+						$.get("published-book-list-partial",function(data)
+						{
+							ajaxIcon.remove();
+							ajaxIcon = null;
+							
+							var html = categoryViews.html();
+							categoryViews.html(html+data);
+						});
+					} */
+					 
+				//view.css({"position":"relative"}); 
 				
 				
+					 //categoryViews.load("book-list-partial");
+				//view를 보여주기
+				//1. 모든 view에 hidden 추가
+				//categoryViews.addClass("hidden");
+				
+				//2. 필요한 view만 hidden 제거
+				view.removeClass("hidden");
+				//if(!target.hasClass("hidden"))
+					//targets.addClass("hidden");
+				
+				oldView = view;
 			});
 			
 		});
@@ -185,10 +321,42 @@
 			</ul>
 		</section>
 		<div class="category-views">
-			<section class="note-list hidden">
+			<section class="note-list  ">
 	         <h1 class="hidden">공개노트 목록</h1>
 	         <ul class="">
-	            <li><a href="note/list">노트보기</a></li>
+	           <c:forEach var="note" items="${notes}">
+				<li>
+					<div><a href="note/${note.id}">${note.title}</a></div>
+					<div>${note.content }</div>
+					<div>
+						<span>0</span>
+						<span>comment : ${note.commentCount}</span>
+						<span> ${note.regDate }</span>
+					</div>
+				</li>
+			</c:forEach> 
+	         </ul>
+	      </section>
+	      
+	     <section class="book-list  ">
+	         <h1 class="hidden">공개 북 목록</h1>
+	         <ul class="">
+	            <li><a href="note/list">책 보기</a></li>
+	            <li><a href="note/list">책 보기</a></li>
+	            <li><a href="note/list">책 보기</a></li>
+	         </ul>
+	      </section>
+	      
+	      <section class="published-book-list ">
+	         <h1 class="hidden">출간된 책 목록</h1>
+	         <ul class="">
+	            <li><a href="note/list">출간 책 보기</a></li>
+	            <li><a href="note/list">출간 책 보기</a></li>
+	            <li><a href="note/list">출간 책 보기</a></li>
+	            <li><a href="note/list">출간 책 보기</a></li>
+	            <li><a href="note/list">출간 책 보기</a></li>
+	            <li><a href="note/list">출간 책 보기</a></li>
+	            <li><a href="note/list">출간 책 보기</a></li>
 	         </ul>
 	      </section>
 	      
@@ -199,12 +367,12 @@
 	         </ul>
 	      </section> -->
 	      
-	      <section class="published-book-list hidden">
+	      <!-- <section class="published-book-list hidden">
 	         <h1 class="hidden">출간된 책 목록</h1>
 	         <ul class="">
 	            <li><a href="note/list">책 보기</a></li>
 	         </ul>
-	      </section>
+	      </section> -->
       </div>
 	</main>
 	

@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mavenwebs.dao.NoteCommentDao;
 import com.mavenwebs.dao.NoteDao;
 import com.mavenwebs.dao.NoteLikeDao;
 import com.mavenwebs.entity.Note;
+import com.mavenwebs.entity.NoteComment;
 import com.mavenwebs.entity.NoteLike;
 import com.mavenwebs.entity.NoteView;
 
@@ -20,6 +22,9 @@ public class NoteService
 	
 	@Autowired
 	private NoteLikeDao noteLikeDao;
+	
+	@Autowired
+	private NoteCommentDao noteCommentDao;
 
 	public List<NoteView> getNoteList(Integer page) 
 	{
@@ -49,6 +54,14 @@ public class NoteService
 			noteLikeDao.delete(noteLike);
 		
 		//return noteLike;
+	}
+
+	public int addNoteComment(NoteComment comment) 
+	{
+		
+		int result = noteCommentDao.insert(comment);
+		
+		return result;
 	}
 
 	
