@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.mavenwebs.entity.Note;
 import com.mavenwebs.entity.NoteView;
+import com.mavenwebs.entity.NoteView1;
 import com.mavenwebs.service.HomeService;
 
 @Controller
@@ -42,6 +44,7 @@ public class HomeController
 			cookie.setPath("/");
 			
 			response.addCookie(cookie);
+			model.addAttribute("visited","false");
 		}
 		
 		else 

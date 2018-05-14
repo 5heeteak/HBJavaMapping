@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.mavenwebs.dao.NoteDao;
 import com.mavenwebs.entity.Note;
 import com.mavenwebs.entity.NoteView;
+import com.mavenwebs.entity.NoteView1;
 
 
 @Service("authorNoteService")

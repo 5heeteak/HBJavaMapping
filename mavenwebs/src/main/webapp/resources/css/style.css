@@ -243,7 +243,7 @@ li{
    }
 
    .note-detail article>footer{
-      height: 37px;
+       height: 37px;
        border-top: 1px solid #9199a4;
        border-bottom: 1px solid #ecf0f5;
        margin: 29px 20px 0;
@@ -251,7 +251,74 @@ li{
        font-size: 12px;
        line-height: 38px;
        color: #9199A4;
+       
+      /*  position: relative; */
    }
+   		/* .note-detail article>footer>a{
+   			
+   		}
+   		
+   		.note-detail article>footer>a:before{
+   			content: "";
+   			display: inline-block;
+   			width: 24px;
+   			height: 24px;
+   			vertical-align: middle;
+   			background: url("../img/icon-set.png") no-repeat -288px 0px;
+   			
+   		} */
+   		
+   		.note-detail .item-count-box{
+   			float: right;
+   		}
+   		
+   		.note-detail .item-count{
+   			text-decoration: none;
+   			color: #ec5621;
+   			margin-left: 3px;
+   			/* position: absolute;
+   			right: 0px; */
+   		}
+   		
+   		.note-detail .item-count:before{
+   			content: "";
+   			display: inline-block;
+     		vertical-align: middle;
+     		
+   		}
+   		
+   		/* .note-detail .comment-count{
+   			right: 35px;
+   		} */
+   		
+   		.note-detail .comment-count:before{
+   			width: 24px;
+   			height: 24px;
+   			background: url("../img/icon-set.png") no-repeat -288px 0px;
+   			
+   		}
+   		
+   		/* .note-detail article>footer>span:last-child{
+   			
+   		}
+   		
+   		.note-detail article>footer>span:last-child:before{
+   			content: "";
+   			display: inline-block;
+   			width: 24px;
+   			height: 24px;
+   			vertical-align: middle;
+   			background: url("../img/icon-set.png") no-repeat -168px 0px;
+   			
+   		} */
+   		
+   		.note-detail .like-count:before{
+   			width: 18px;
+   			height: 18px;
+   			background: url("../img/icon-set.png") no-repeat -126px 0px;
+   			background-size: 600px 300px;
+   			
+   		}
    
    .note-detail article>div{
       /* line-height: 27px;

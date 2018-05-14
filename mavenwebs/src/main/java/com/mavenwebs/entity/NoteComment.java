@@ -11,9 +11,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
+//@Table(name="comments")
 public class NoteComment 
 {
 	@Id
@@ -22,18 +24,31 @@ public class NoteComment
 	private String nicName; 
 	private String pwd; 
 	private String content; 
+	@Column(insertable=false)
 	private Date regDate;
 	private boolean secret;
-	@Column(insertable=false, updatable=false)
+	//@Column(insertable=false, updatable=false)
 	private int noteId; 
 	
-	
-	@JoinColumn(name="noteId")
+	//관계설정
+	//@ManyToOne(cascade= {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	//@JoinColumn(name="noteId")
+	@Transient
 	private Note note;
 	
 	public NoteComment() 
 	{
 		
+	}
+	
+	//for inserting
+	public NoteComment(String nicName, String pwd, String content, boolean secret, int noteId) 
+	{
+		this.nicName = nicName;
+		this.pwd = pwd;
+		this.content = content;
+		this.secret = secret;
+		this.noteId = noteId;
 	}
 
 	//for selecting
@@ -48,17 +63,6 @@ public class NoteComment
 		this.secret = secret;
 		this.noteId = noteId;
 	}
-
-	//for inserting
-	public NoteComment(String nicName, String pwd, String content, boolean secret, int noteId) 
-	{
-		this.nicName = nicName;
-		this.pwd = pwd;
-		this.content = content;
-		this.secret = secret;
-		this.noteId = noteId;
-	}
-
 
 	public int getId() 
 	{

@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.mavenwebs.entity.Note;
 import com.mavenwebs.entity.NoteView;
+import com.mavenwebs.entity.NoteView1;
 import com.mavenwebs.service.author.NoteService;
 
 @Controller("authorNoteController")
@@ -112,7 +113,7 @@ public class NoteController
 	@RequestMapping(value="list/{id}/edit", method=RequestMethod.GET)
 	public String edit(@PathVariable("id") Integer id, Model model)
 	{
-		Note note = service.getNote(id);
+		NoteView note = service.getNote(id);
 		
 		model.addAttribute("note", note);
 		

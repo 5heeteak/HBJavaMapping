@@ -329,8 +329,9 @@
 					<div><a href="note/${note.id}">${note.title}</a></div>
 					<div>${note.content }</div>
 					<div>
-						<span>0</span>
-						<span>comment : ${note.commentCount}</span>
+						<span>분류</span>
+						<%-- <span>comment : ${fn:length(note.commentCount)}</span> --%>
+						<span>comment : ${note.commentCount}</span> 
 						<span> ${note.regDate }</span>
 					</div>
 				</li>

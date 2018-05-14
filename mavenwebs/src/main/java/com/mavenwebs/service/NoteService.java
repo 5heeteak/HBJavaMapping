@@ -36,10 +36,14 @@ public class NoteService
 	public NoteView getNote(Integer id)
 	{
 		NoteView note = noteDao.get(id);
-		NoteView prev = noteDao.getPrev(id);
-		NoteView next = noteDao.getNext(id);
+		Note prev = noteDao.getPrev(id);
+		Note next = noteDao.getNext(id);
+		int page = 1;
+		List<NoteComment> comments = noteCommentDao.getListByNoteId(page, id);
+		
 		note.setPrev(prev);
 		note.setNext(next);
+		note.setComments(comments);
 		
 		return note ;
 	}

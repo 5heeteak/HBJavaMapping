@@ -62,20 +62,20 @@ public class HbNoteDao implements NoteDao
 
 	@Override
 	@Transactional
-	public NoteView getPrev(Integer id) 
+	public Note getPrev(Integer id) 
 	{
 		Session session = sessionFactory.getCurrentSession();
 		
-		Query<NoteView> query = session
-														.createQuery("from NoteView "
-														+ "where regDate < (select regDate from NoteView where id=:id)" 
+		Query<Note> query = session
+														.createQuery("from Note "
+														+ "where regDate < (select regDate from Note where id=:id)" 
 														+ "order by regDate desc "
-														,NoteView.class)
+														,Note.class)
 														.setParameter("id", id)
 														.setMaxResults(1);
 		
-		NoteView note = null;
-		List<NoteView> list = query.list();
+		Note note = null;
+		List<Note> list = query.list();
 		
 		if(list.size() > 0)
 			note = list.get(0);
@@ -85,20 +85,20 @@ public class HbNoteDao implements NoteDao
 
 	@Override
 	@Transactional
-	public NoteView getNext(Integer id) 
+	public Note getNext(Integer id) 
 	{
 		Session session = sessionFactory.getCurrentSession();
 		
-		Query<NoteView> query = session
-														.createQuery("from NoteView "
-														+ "where regDate > (select regDate from NoteView where id=:id)" 
+		Query<Note> query = session
+														.createQuery("from Note "
+														+ "where regDate > (select regDate from Note where id=:id)" 
 														+ "order by regDate "
-														,NoteView.class)
+														,Note.class)
 														.setParameter("id", id)
 														.setMaxResults(1);
 		
-		NoteView note = null;
-		List<NoteView> list = query.list();
+		Note note = null;
+		List<Note> list = query.list();
 		
 		if(list.size() > 0)
 			note = list.get(0);

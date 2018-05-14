@@ -22,8 +22,8 @@ public interface NoteDao
 
 	int update(Note note);
 
-	NoteView getPrev(Integer id);
+	Note getPrev(Integer id);
 
-	NoteView getNext(Integer id);
+	Note getNext(Integer id);
 
 }

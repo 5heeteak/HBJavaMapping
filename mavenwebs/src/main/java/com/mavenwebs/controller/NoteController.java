@@ -1,6 +1,7 @@
 package com.mavenwebs.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.mavenwebs.entity.Note;
 import com.mavenwebs.entity.NoteComment;
-import com.mavenwebs.entity.NoteLike;
 import com.mavenwebs.entity.NoteView;
 import com.mavenwebs.service.NoteService;
 
@@ -42,6 +43,22 @@ public class NoteController
 		model.addAttribute("notes", notes);
 		
 		return "note.list";
+	}
+	
+	@RequestMapping("ajax-list")
+	@ResponseBody
+	public String ajaxList(@RequestParam(value="p", defaultValue="1") 
+				Integer page) 
+	{
+																			// Model 객체를 생성 Model은 공유객체
+		List<NoteView> notes = service.getNoteList(page);
+		
+		/*List<String> list = new ArrayList<>();
+		
+		for(NoteView n : notes)
+			list.add(n.getTitle());*/
+						
+		return new Gson().toJson(notes);
 	}
 	
 	
@@ -73,8 +90,9 @@ public class NoteController
 	
 	@PostMapping("{id}/comment/reg")
 	@ResponseBody
-	public String commentReg(NoteComment comment,@PathVariable("id") Integer noteId)
+	public String commentReg(NoteComment comment,@RequestParam("nic-name") String nicName, @PathVariable("id") Integer noteId)
 	{
+		comment.setNicName(nicName);
 		comment.setNoteId(noteId);
 		
 		int result = service.addNoteComment(comment);

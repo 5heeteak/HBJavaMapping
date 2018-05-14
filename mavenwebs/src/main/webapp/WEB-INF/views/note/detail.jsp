@@ -10,7 +10,12 @@
 				<h2>컴퓨터프로그래밍</h2>
 			</header>
 			<footer>
+				<span>${note.writerId}</span>
 				<span><fmt:formatDate pattern="yyyy-MM-dd일 aHH:mm" value="${note.regDate}"/>  </span>
+				<span class="item-count-box">
+					<a href="" class="item-count comment-count">${note.commentCount}</a>
+					<span class="item-count like-count">${note.commentCount}</span>
+				</span>
 			</footer>
 			<div>
 				${note.content}
@@ -31,7 +36,7 @@
 			</div>
 		</section>
 		
-		<section>
+		<section class="commit-form">
 			<h1 class="hidden"> 댓글 입력 폼 </h1>
 			<h2> 댓글이나 쓰고 가라 </h2>
 			<form action="${note.id}/comment/reg" method="post">
@@ -47,10 +52,10 @@
 						<textarea rows="1" cols="50" name="content"></textarea>
 					</div>
 					<div>
-						<input type="checkbox" id="secret-option"/>
+						<input type="checkbox" id="secret-option" name="secret" value="true"/>
 						<label> 비밀 댓글 </label>
 						<input type="submit" value="취소"/>
-						<input type="submit" value="등록"/>
+						<input type="submit" name="submit-btn" value="등록"/>
 					</div>
 				</section>
 			</form>
@@ -63,15 +68,22 @@
 					<li>
 						<table border="1">
 							<tr>
-								<td rowspan="2">이미지</td>
+								<td rowspan="2"></td>
 								<td>
-									<span>${c.writerId}</span>
+									<span>${c.nicName}</span>
 									<span>${c.regDate}</span>
-									<span></span>
+									<span></span>									
 								</td>
 							</tr>
 							<tr>
-								<td>${c.content}</td>
+								<td>
+								<c:if test="${c.secret eq true }">
+								<span>비밀글</span>
+								</c:if>
+								<c:if test="${c.secret eq false}">
+									${c.content}
+								</c:if>	
+								</td>
 							</tr>
 						</table>
 					</li>
@@ -104,14 +116,14 @@
 		
 </main>
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 	window.addEventListener("load",function(){
 	
 		var selBtn = document.querySelector("#sel-button");
 		var editBtn = document.querySelector("#edit-button");
 		var delBtn = document.querySelector("#del-button");
-
+		
 		selBtn.onclick = function(){
 
 			if(editBtn.className == "")
@@ -129,4 +141,55 @@
 
 	});
 	
+	$(function(){
+		
+		var submitBtn = $(".commit-form input[name='submit-btn']");
+	
+		
+		submitBtn.click(function(e){
+			e.preventDefault();
+			
+			//파일 포함 여부에 따라 EncodeType 변경
+			// Multipart -> new FormData();
+			// key=value&key=value
+			var data = $(".commit-form form").serialize();
+			
+			//alert(data);
+			
+			$.post("${note.id}/comment/reg",data,function(result){
+
+				if(parseInt(result)==1)
+				{
+					
+					
+				}
+			}); 
+			
+		});
+		
+	});
+	
+	/* //  === 기존 목록을 대체 해야 한다. ====
+    // 1. 기존 목록을 지운다. 몽땅
+    noteCommentUl.empty();
+    // 2. 가져온 데이터목록으로 댓글을 채운다.
+    // 2-1. 댓글 항목을 위한 View 템플릿 사본을 준비
+    //var template = document.querySelector("#comment-template");   
+    var template = $("#comment-template");
+    
+    //var cloneLi = document.importNode(template.content, true);
+    var cloneLi = $(document.importNode(template.get(0).content, true));
+    // 2-2. view 템블릿 사본에 comments의 0번째 데이터를 채우기
+    
+    //var spans = cloneLi.querySelectorAll("tr:first-child td span");
+    var spans = cloneLi.find("tr:first-child td span");
+    //var td = cloneLi.querySelector("tr:nth-child(2) td");
+    var td = cloneLi.find("tr:nth-child(2) td");
+    
+    //spans[0].textContent =comments[0].nicName;
+    //spans[1].textContent = comments[0].regDate;
+    //td.textContent = comments[0].content;
+    spans.eq(0).text(comments[0].nicName);
+    spans.eq(1).text(comments[0].regDate);
+    td.text(comments[0].content); */
 </script>
